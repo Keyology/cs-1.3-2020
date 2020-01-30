@@ -24,6 +24,21 @@ def decode(digits, base):
     # TODO: Decode digits from any base (2 up to 36)
     # ...
 
+    result = 0
+
+    for index, digit in enumerate(digits):
+        if digit.isdigit():
+            digit_to_add = int(digit)
+        else:
+            #  ord() covert string to single digit unicode number
+            digit_to_add = ord(digit) - 97 + 10
+        result += digit_to_add
+        if index is not len(digits) - 1:
+            result *= base
+        else:
+            1
+    return result
+
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
@@ -40,6 +55,18 @@ def encode(number, base):
     # ...
     # TODO: Encode number in any base (2 up to 36)
     # ...
+    new_base_number = ''
+    while number != 0:
+        remainder = number % base
+        number = number // base
+        if(remainder >= 10 and base > 10):
+            letters = "abcdefghijklmnopqrstuvwxyz"
+            remainder = letters[remainder - 10]
+        else:
+            remainder
+        new_base_number += str(remainder)
+    new_base_number = new_base_number[::-1]
+    return new_base_number
 
 
 def convert(digits, base1, base2):
@@ -59,6 +86,21 @@ def convert(digits, base1, base2):
     # ...
     # TODO: Convert digits from any base to any base (2 up to 36)
     # ...
+    if(base1 == 10):
+        new_base_number = encode(int(digits), base2)
+    else:
+        decimal_digit = decode(digits, base1)
+        new_base_number = encode(decimal_digit, base2)
+    return new_base_number
+
+
+# if base1 == 10:
+#         new_base_number = encode(int(decimal_digit), base2)
+#     else:
+#         decimal_digit = decode(digits, base1)
+#         new_base_number = encode(decimal_digit, base2)
+#     # Return
+#     return new_base_number
 
 
 def main():
@@ -71,11 +113,14 @@ def main():
         base2 = int(args[2])
         # Convert given digits between bases
         result = convert(digits, base1, base2)
-        print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
+        print('{} in base {} is {} in base {}'.format(
+            digits, base1, result, base2))
     else:
         print('Usage: {} digits base1 base2'.format(sys.argv[0]))
         print('Converts digits from base1 to base2')
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    result = encode(1, 2)
+    print("RESULT", result)
