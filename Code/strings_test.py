@@ -17,8 +17,14 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'abc') is True  # all strings contain themselves
         assert contains('aaa', 'a') is True  # multiple occurrences
         assert contains('aaa', 'aa') is True  # overlapping pattern
+        assert contains('ccc', 'cc')
         # TODO: Write more positive test cases with assert is True statements
         # ...
+
+
+        # What you can do is save the lenth of the pattern and use that as an index to figure out where the pattern ends 
+        # just add the patter length + where the patter starts 
+        # you could slice it once technicaly 
 
     def test_contains_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns

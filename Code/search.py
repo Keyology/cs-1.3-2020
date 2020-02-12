@@ -18,6 +18,8 @@ def linear_search_iterative(array, item):
 
 def linear_search_recursive(array, item, index=0):
     # TODO: implement linear search recursively here
+
+    ''' Time complexity is O(n) '''
     
     # check if item is in array
     if array[index] == item:
@@ -47,6 +49,8 @@ def binary_search(array, item):
 
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
+
+    ''' Time complexity is O(log n) '''
 
     # Sort the array
     array = sorted(array)
@@ -88,6 +92,7 @@ def binary_search_iterative(array, item):
 
 def binary_search_recursive(array, item, left=None, right=None):
     # TODO: implement binary search recursively here
+    ''' Time complexity is O(log n) '''
     # Sort the array
     array = sorted(array)
 
