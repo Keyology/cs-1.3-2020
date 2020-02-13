@@ -1,7 +1,7 @@
 #!python
 
 def contains(text, pattern):
-    
+    #  Time Complexity is 0(n * p)
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
@@ -14,6 +14,7 @@ def contains(text, pattern):
 
     
 def find_index(text, pattern):
+    #  Time Complexity is 0(n * p)
     
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
@@ -32,6 +33,7 @@ def find_index(text, pattern):
 
 
 def find_all_indexes(text, pattern):
+    #  Time Complexity is 0(n * p)
     
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
