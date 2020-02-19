@@ -164,6 +164,7 @@ class LinkedList(object):
                 return node.data  # O(1) time to return data
             # Skip to the next node
             node = node.next  # O(1) time to reassign a variable
+        # We never found data satisfying quality, but have to return something
         return None  # O(1) time to return None
 
     def replace(self, old_item, new_item):

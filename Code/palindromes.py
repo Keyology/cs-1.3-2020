@@ -1,11 +1,10 @@
 #!python
 
 import string
-import re
 # Hint: Use these string constants to ignore capitalization and/or punctuation
-string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
-string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-string.ascii_letters is string.ascii_lowercase + string.ascii_uppercase
+# string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
+# string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+# string.ascii_letters is ascii_lowercase + ascii_uppercase
 
 
 def is_palindrome(text):
@@ -19,57 +18,48 @@ def is_palindrome(text):
 
 
 def is_palindrome_iterative(text):
-    # TODO: implement the is_palindrome function iteratively here
+    # time - O(n^2) - because we're looking at each char and chec
+    new_text = []
+    text_reversed = []
+    lower_case_alphabet = string.ascii_lowercase
+
+    for char in text.lower(): # O(n) => Looking through n elements
+        if char in lower_case_alphabet: # search O(n)
+            text_reversed.insert(0, char) # insertion O(n)
+            new_text.append(char) # O(1)
+    text_reversed = "".join(text_reversed)# O(n) putthing all items togther
+    new_text = "".join(new_text) 
+
+    if text_reversed == new_text:
+        return True # found
+    return False # not found
 
 
-    # once implemented, change is_palindrome to call is_palindrome_iterative
-    # to verify that your iterative implementation passes all tests
+def is_palindrome_recursive(text, left=None, right=None, new_text=None):
+    # O(n*n) time and spacae because we use the list comprehension to iterate n elements and function keeps calling itself until base conditions are called
+    alphabet = set(string.ascii_lowercase)
+    # set new_text value
+    if new_text is left is right is None:
+        new_text = [char for char in text.lower() if char in alphabet]
+        # new_text = list(map(lambda x: x.lower(), filter(lambda x: x in alphabet, text)))
 
+        # list comprehension at new_text returns given text as a list with no special characters 
+        return is_palindrome_recursive(text, 0, len(new_text) -1, new_text)
 
-    # Cleans text input to only lowercase letters
-    regex = re.compile('[^a-zA-Z]')
-    word = regex.sub("", text.lower())
-
-    left = 0
-    right = len(word) - 1
-
-    while left <= right:
-        if word[left] == word[right]:
-            left += 1
-            right -= 1
-        else: 
-            return False
-
-    return True 
-
-    
-    
-
-
-def is_palindrome_recursive(text, left=None, right=None):
-    # TODO: implement the is_palindrome function recursively here
-
-    # once implemented, change is_palindrome to call is_palindrome_recursive
-    # to verify that your iterative implementation passes all tests
-
-    # Cleans text input to only lowercase letters
-    regex = re.compile('[^a-zA-Z]')
-    word = regex.sub("", text.lower())
-
-    # Initializes a left and right pointer if none given
-    if left == None and right == None:
-        left = 0
-        right = len(word) - 1
-
-    if left >= right:
-        return True
-
-    if word[left] is not word[right]:
+    # if there are 2 items and are not the same 
+    if len(new_text) -1 == 1 and new_text[left] != new_text[right]:
         return False
-    else:
-        return is_palindrome_recursive(word, left + 1, right -1)
 
+    # empty string or one char in text 
+    if left >= right or (left == 0 and right == 0): 
+        return True 
     
+    # both pointers are the same
+    elif new_text[left] == new_text[right]:
+        return is_palindrome_recursive(text, left +1, right -1, new_text)
+    else:
+        return False 
+
 
 
 def main():
