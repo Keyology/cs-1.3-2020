@@ -178,9 +178,8 @@ class LinkedList(object):
                 node.data = new_item
                 return
             node = node.next
-            if node == self.tail:
-                if node.data != old_item:
-                    raise ValueError('old_item is not found')
+           
+        raise ValueError('old_item is not found')
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
